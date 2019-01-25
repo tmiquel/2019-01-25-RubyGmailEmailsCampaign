@@ -5,6 +5,11 @@ require "pry"
 def liste_dpts(page)
 	liste_dpts = page.css("//tbody//tr//td//a[@class='lientxt']/@href").to_a
 	liste_dpts.map! {|k| k.text}
+	final_liste_dpts = []
+	while final_liste_dpts.size < 3
+		final_liste_dpts << liste_dpts[rand(liste_dpts.size-1)]
+	end
+	final_liste_dpts
 end
 
 def get_townhall_urls(liste_dpts,page)
@@ -24,6 +29,7 @@ def get_townhall_urls(liste_dpts,page)
 			nbpages += 1
 		end
 	end
+binding.pry
 	return [liste_noms, liste_cmmnes.map! {|k| k.text}]
 end
 
@@ -45,11 +51,7 @@ def perform
 	return scrapping_master_function(get_townhall_urls(liste_dpts(page),page))
 end
 
-def perform_valdoiseversion
-	page = Nokogiri::HTML(open("http://www.annuaire-des-mairies.com/"))
-	return scrapping_master_function(get_townhall_urls(["val-d-oise.html"],page))
-end
 
-puts perform_valdoiseversion
+puts perform
 
 
