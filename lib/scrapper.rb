@@ -82,7 +82,7 @@ class Scrapper
 
 	def get_towns_townhalls_emails_hash
 		page = Nokogiri::HTML(open("http://www.annuaire-des-mairies.com/"))
-		return scrapping_master_function(get_townhall_urls(liste_dpts(page),page))#.keep_if {|key,value| value != ""}
+		return scrapping_master_function(get_townhall_urls(liste_dpts(page),page)).keep_if {|key,value| value != ""}
 	end
 
 #######################################################################
