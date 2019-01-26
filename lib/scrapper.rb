@@ -24,6 +24,7 @@ class Scrapper
 		while final_liste_dpts.size < 3
 			random_selection = liste_dpts[rand(liste_dpts.size-1)]
 			final_liste_dpts << random_selection if (random_selection != "Val-d'Oise" && random_selection != "Paris")
+			final_liste_dpts.uniq!
 		end
 		puts final_liste_dpts
 		return final_liste_dpts
